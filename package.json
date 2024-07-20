@@ -1,0 +1,14 @@
+{
+  "name": "simple-k6-testing",
+  "version": "1.0.0",
+  "description": "Simple performance testing example with k6",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nadir Basalamah",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/k6": "^0.52.0"
+  }
+}
