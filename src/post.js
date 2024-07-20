@@ -1,8 +1,15 @@
 import http from "k6/http";
+import { SharedArray } from "k6/data";
+import papaparse from "https://jslib.k6.io/papaparse/5.1.1/index.js";
 import {
   describe,
   expect,
 } from "https://jslib.k6.io/k6chaijs/4.3.4.3/index.js";
+import { getRandomUser } from "./helper/random.js";
+
+const csvData = new SharedArray("sample user dataset", () => {
+  return papaparse.parse(open("../resources/users.csv"), { header: true }).data;
+});
 
 export const options = {
   vus: 10,
@@ -11,9 +18,11 @@ export const options = {
 
 export default function () {
   describe("Create a new user", () => {
+    const sampleUser = getRandomUser(csvData);
+
     const requestBody = {
-      name: "morpheus",
-      job: "leader",
+      name: sampleUser.username,
+      job: sampleUser.job,
     };
 
     const response = http.post(
