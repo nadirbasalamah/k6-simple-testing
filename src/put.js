@@ -6,6 +6,7 @@ import {
   expect,
 } from "https://jslib.k6.io/k6chaijs/4.3.4.3/index.js";
 import { getRandomUser } from "./helper/random.js";
+import { BASE_URL } from "./helper/constant.js";
 
 const csvData = new SharedArray("sample user dataset", () => {
   return papaparse.parse(open("../resources/users.csv"), { header: true }).data;
@@ -25,10 +26,8 @@ export default function () {
       job: sampleUser.job,
     };
 
-    console.log("req: ", requestBody);
-
     const response = http.put(
-      "https://reqres.in/api/users/2",
+      `${BASE_URL}/users/2`,
       JSON.stringify(requestBody),
       {
         headers: {
@@ -41,8 +40,6 @@ export default function () {
     const timestampPattern =
       /[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\.[0-9]+)?([Zz]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?/;
     const jsonResponse = response.json();
-
-    console.log(jsonResponse);
 
     expect(response.status, "response status code").to.equal(200);
     expect(jsonResponse, "response body data").to.not.equal(null);

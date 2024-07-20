@@ -6,6 +6,7 @@ import {
   expect,
 } from "https://jslib.k6.io/k6chaijs/4.3.4.3/index.js";
 import { getRandomUser } from "./helper/random.js";
+import { BASE_URL } from "./helper/constant.js";
 
 const csvData = new SharedArray("sample user dataset", () => {
   return papaparse.parse(open("../resources/users.csv"), { header: true }).data;
@@ -29,7 +30,7 @@ export default function () {
     };
 
     const response = http.post(
-      "https://reqres.in/api/users",
+      `${BASE_URL}/users`,
       JSON.stringify(requestBody),
       {
         headers: {
