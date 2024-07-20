@@ -39,3 +39,9 @@ For example, the get all user test is executed.
 ```sh
 k6 run src/get.js
 ```
+
+4. You can also try interactive mode when running the test.
+
+```sh
+npm test
+```
