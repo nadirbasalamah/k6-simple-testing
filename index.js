@@ -25,8 +25,6 @@ const displayMenu = () => {
   console.log("3. Update an user");
   console.log("4. Delete user");
 
-  //TODO: get input from user
-
   const questions = [
     {
       type: "input",
@@ -35,7 +33,6 @@ const displayMenu = () => {
     },
   ];
   inquirer.prompt(questions).then((answers) => {
-    //TODO: validation
     let choice = Number.parseInt(answers.choice) - 1;
 
     const isValid = choice >= 0 && choice < tests.length;

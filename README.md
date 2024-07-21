@@ -45,3 +45,5 @@ k6 run src/get.js
 ```sh
 npm test
 ```
+
+![Interactive Mode Demo](./docs/interactive_demo.gif)
