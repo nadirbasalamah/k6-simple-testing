@@ -1,4 +1,4 @@
-# simple-k6-testing
+# k6-simple-testing
 
 Simple performance testing example with k6
 

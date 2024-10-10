@@ -1,5 +1,6 @@
 import { exec } from "child_process";
 import inquirer from "inquirer";
+import ora from "ora";
 
 const tests = ["src/get.js", "src/post.js", "src/put.js", "src/delete.js"];
 
@@ -8,13 +9,15 @@ const runTest = (choice) => {
 };
 
 const runCommand = (filename) => {
-  console.log("please wait...");
+  const spinner = ora("Running test...").start();
   exec(`k6 run ${filename}`, (err, stdout, stderr) => {
     if (err) {
+      spinner.fail("test failed");
       return;
     }
 
     console.log(`${stdout}`);
+    spinner.succeed("Test completed");
   });
 };
 

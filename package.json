@@ -13,6 +13,7 @@
     "@types/k6": "^0.52.0"
   },
   "dependencies": {
-    "inquirer": "^10.0.4"
+    "inquirer": "^10.0.4",
+    "ora": "^8.1.0"
   }
 }
